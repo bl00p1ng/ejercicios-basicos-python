@@ -9,7 +9,7 @@ def run():
     user_eur = float(input(':: Ingresa la cantidad de Euros que quieres  convertir: '))
 
     eur_converted = user_eur * eur_in_usd
-    print(str(user_eur) + ' 💶 Euros equivalen a $' + str(eur_converted) + ' 💵 Dólares')
+    print('€' + str(user_eur) + ' 💶 Euros equivalen a $' + str(eur_converted) + ' 💵 Dólares')
 
 
 if __name__ == '__main__':
