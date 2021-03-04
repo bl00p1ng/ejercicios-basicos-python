@@ -1,10 +1,25 @@
 import random
 
-houses_number = 0
-enable_animals = 2
+
+def choose_random_option(elements_list):
+    """
+    Elige una opción aleatoria entre los elementos de una lista.
+    Es una función auxiliar de generate_scene()
+
+    :param elements_list: Lista con los elementos a elegir
+    :return: Elemento elegido aleatoriamente
+    """
+    option_chosen = (elements_list[random.randint(0, len(elements_list) - 1)])
+    return option_chosen
 
 
-def generate_drawing(houses_number):
+def generate_scene(time):
+    """
+    Genera una escena campestre con ASCII Art. Dicha escena puede ser diurna o nocturna
+
+    :param time: Establece el momento del día en la escena (1 == día/ 2 == noche)
+    :return: Escena campestre terminada
+    """
     suns = [
         """
         |
@@ -48,120 +63,100 @@ def generate_drawing(houses_number):
         """
     ]
 
+    moons = [
+        """
+          _.._
+        .' .-'`
+       /  /
+       |  |
+       \\  '.___.;
+        '._  _.'
+        """,
+        """
+         _.._
+       .' .-'`
+      /  /
+      |  |
+      \  \\
+       '._'-._
+          ```
+
+        """,
+        """
+       _..._     
+     .:::::::.    
+    :::::::::::   
+    ::::::::::: 
+    `:::::::::'  
+      `':::'' 
+        """,
+        """
+            
+    *  --.
+        \  \   *
+         )^ |    *
+*       <_, |
+   *    ./ /
+       --'   *
+        """
+    ]
+
     houses = [
     """
-                     x
-          .-. _______|
-          |=|/     /  \\
-          | |_____|_""_|
-          |_|_[X]_|____|
+                                                                 `'::.
+                                                           _________H ,%%&%,
+                                        ____||____        /\     _   \%&&%%&%
+                     x        +        ///////////\\      /  \___/^\___\%&%%&&
+          .-. _______|        A_      ///////////  \\     |  | []   [] |%\Y&%'         __
+          |=|/     /  \\      /\-\\     |    _    |  |     |  |   .-.   | ||       (___()'`;      
+          | |_____|_""_|    _||"|_    |[] | | []|[]|     @._|@@_|||_@@|~||       /,    /`
+          |_|_[X]_|____|   ~^~^~^~^   |   | |   |  |       `'''') )''''`         \\\\"--\\\\
     """,
-    """
-       +
-       A_
-      /\-\\
-     _||"|_
-    ~^~^~^~^
-    """,
-    """
-      ____||____
-     ///////////\\
-    ///////////  \\
-    |    _    |  |
-    |[] | | []|[]|
-    |   | |   |  |
-    """,
-    """
-        .-. ,-.
-    '   (%%'`.               __
-     `-(%|%)% )             /()\````\\
-       (%\K /,             /____\____\\
-        %.\V/%.)           |n  n|.___|
-       (%\%`(',            | __ /_\___\\
-         %| ,)   ____      | || |n|n_n|
-          | |  /____ "_     / |
-          | |_" .-. "_ "__,'  /
-         ,| |  |,' |  "__,...'  
-    """,
-    """
-                `'::.
-    _________H ,%%&%,
-   /\     _   \%&&%%&%
-  /  \___/^\___\%&%%&&
-  |  | []   [] |%\Y&%'
-  |  |   .-.   | ||  
-  @._|@@_|||_@@|~||
-     `'''') )''''`
-    """,
-    """
-          `'::::.
-        _____A_
-       /      /\\
-    __/__/\__/  \___
-   /__|" '' "| /___/\\
-   |''|"'||'"| |' '||
-   `**`**))*`*`****
-    """,
-    """
-                                +&-
-                          _.-^-._    .--.
-                       .-'   _   '-. |__|
-                      /     |_|     \|  |
-                     /               \  |
-                    /|     _____     |\ |
-                     |    |==|==|    |  |
- |---|---|---|---|---|    |--|--|    |  |
- |---|---|---|---|---|    |==|==|    |  |
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+        """
+        .-. ,-.                                                                                +&-
+    '   (%%'`.               __                                                              _.-^-._    .--.
+     `-(%|%)% )             /()\````\\                                                     .-'   _   '-. |__|
+       (%\K /,             /____\____\\          `'::::.                                  /     |_|     \|  |
+        %.\V/%.)           |n  n|.___|           _____A_                                /               \  |
+       (%\%`(',            | __ /_\___\\        /      /\\                               /|     _____     |\ |    
+         %| ,)   ____      | || |n|n_n|     __/__/\__/  \___                            |    |==|==|    |  |         (__)     
+          | |  /____ "_     / |            /__|" '' "| /___/\\       |---|---|---|---|---|    |--|--|    |  |  \------(oo)    
+          | |_" .-. "_ "__,'  /            |''|"'||'"| |' '||       |---|---|---|---|---|    |==|==|    |  |   ||    (__)    
+         ,| |  |,' |  "__,...'             `**`**))*`*`****        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^||w--||     \|/
     """
     ]
 
-    animals = [
-    """
-             (__)    
-     `\------(oo)
-       ||    (__)
-       ||w--||     \|/
-    """,
-    """
-       _ ____
-     /( ) _   \\
-    / //   /\` \,  ||--||--||-
-      \|   |/  \|  ||--||--||-
-~^~^~^~~^~~~^~~^^~^^^^^^^^^^^^
-    """,
-    """
-        ,--,
-  _ ___/ /\|
- ;( )__, )
-; //   '--;
-  \     |
-   ^    ^
-    """,
-    """
-         .
- ..^____/
-`-. ___ )
-  ||  || 
-    """,
-    """
-        __
-   (___()'`;
-   /,    /`
-   \\\\"--\\\\
-    """
-    ]
+    # Evaluar el momento del día de la escena
+    if time == 1:
+        # Generar Sol
+        print(choose_random_option(suns))
 
-    # Generar Sol
-    sun = ''
-    sun += (suns[random.randint(0, 3)])
-    print(sun)
+        # Generar paisaje
+        generate_landscape(houses)
 
-    # Generar paisaje
-    landscape = []
+    elif time == 2:
+        # Generar luna
+        print(choose_random_option(moons))
 
-    for i in range(houses_number):
-        landscape += (houses[random.randint(0, 6)])
+        # Generar paisaje
+        generate_landscape(houses)
+
+    # Verifica que el valor de time sea un número positivo y que no sea mayor a 2
+    elif type(time) == int and (time > 2 or (time < 1 and time != 0)):
+        print('⚠ Debes elegir una opción valida como 1 ó 2\n')
+        run()
+
+
+def generate_landscape(houses):
+    """
+    Elige un paisaje de entre los elementos de una lista con paisajes y lo imprime en pantalla.
+    Es una función auxiliar de generate_scene()
+
+    :param houses: Lista con los paisajes a elegir
+    :return: Paisaje impreso en pantalla
+    """
+    landscape = choose_random_option(houses)
     print(landscape)
 
 
@@ -172,15 +167,18 @@ def run():
     # - un coche, un gato, una taza de café, etc. Ten en cuenta que puedes utilizar
     # caracteres como *, +, <, #, @, etc.
 
-    print('✍ GENERADOR DE ASCII ART')
-    print('🏞 Crea una escena campestre personalizada 🌄')
+    print('**** GENERADOR DE ASCII ART ****')
+    print(':: Crea una escena campestre personalizada')
 
-    # Configurar dibujo
-    houses_number = int(input(':: Escribe el número de casas que quieres en la escena: '))
-    #enable_animals = int(input(':: Quires ver animales en tu dibujo \n(1 = SI | 2 = NO): '))
+    day_or_night = 0  # Establece el momento del día en que se creará el dibujo.
+    try:
+        day_or_night = int(input(':: Quieres que la escena sea de dia o de noche?\n 1. Día\n 2. Noche \n➡ Tu elección: '))
+    except ValueError as e:
+        print('⚠ Elegiste una opción incorrecta\n')
+        run()
 
     # Crear dibujo
-    generate_drawing(houses_number)
+    generate_scene(day_or_night)
 
 
 if __name__ == '__main__':
